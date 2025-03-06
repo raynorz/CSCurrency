@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let apiManager = BackendCommunication()
+    private let currencyService: CurrencyServiceProtocol = CurrencyService(apiManager: BackendCommunication())
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,7 +21,7 @@ struct ContentView: View {
         .onAppear {
             Task {
                 do {
-                    let response: [CurrencyResponse] = try await apiManager.request(endpoint: CurrencyRouter.listOfRates)
+                    let response = try await currencyService.getCurrenciesExchange()
                     print(response)
                 } catch {
                     print("Catching error: \(error)")

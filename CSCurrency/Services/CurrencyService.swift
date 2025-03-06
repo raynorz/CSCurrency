@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class CurrencyService {
+protocol CurrencyServiceProtocol {
+    func getCurrenciesExchange() async throws -> [CurrencyResponse]
+}
+
+final class CurrencyService: CurrencyServiceProtocol {
     private let apiManager: APIManager
     
     init(apiManager: APIManager) {
