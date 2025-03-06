@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let apiManager = BackendCommunication()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,6 +17,16 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            Task {
+                do {
+                    let response: [CurrencyResponse] = try await apiManager.request(endpoint: CurrencyRouter.listOfRates)
+                    print(response)
+                } catch {
+                    print("Catching error: \(error)")
+                }
+            }
+        }
     }
 }
 
