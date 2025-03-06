@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct CurrencyResponse: Codable {
-    let country, name, shortName: String
-    let amount: Int
+    let shortName: String
     let validFrom: String
-    let valBuy: Int
-    let valSell, valMid: Double
-    let currBuy: Int
-    let currSell, currMid, move, cnbMid: Double
+    let name, country: String
+    let move: Double
+    let amount: Int
+    let valBuy, valSell, valMid, currBuy: Double
+    let currSell, currMid: Double
     let version: Int
+    let cnbMid, ecbMid: Double
 }
 
 struct ContentView: View {
