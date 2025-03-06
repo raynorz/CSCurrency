@@ -33,10 +33,14 @@
 		2C6DF4642D79D67700916BB7 /* Exceptions for "CSCurrency" folder in "CSCurrencyTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Networking/Settings/APIManager.swift,
 				Networking/Settings/APIRequestConvertible.swift,
 				Networking/Settings/CustomJSONDecoder.swift,
 				Networking/Settings/HTTPMethod.swift,
 				Networking/Settings/NetworkingError.swift,
+				Routers/Currency/CurrencyRouter.swift,
+				Services/Currency/CurrencyService.swift,
+				Services/Currency/ResponseBodies/CurrencyResponse.swift,
 			);
 			target = 2C24BFCD2D799AC4006273D2 /* CSCurrencyTests */;
 		};
