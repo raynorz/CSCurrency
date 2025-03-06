@@ -29,9 +29,25 @@
 		2C24BFD82D799AC4006273D2 /* CSCurrencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSCurrencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2C6DF4642D79D67700916BB7 /* Exceptions for "CSCurrency" folder in "CSCurrencyTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Networking/Settings/APIRequestConvertible.swift,
+				Networking/Settings/CustomJSONDecoder.swift,
+				Networking/Settings/HTTPMethod.swift,
+				Networking/Settings/NetworkingError.swift,
+			);
+			target = 2C24BFCD2D799AC4006273D2 /* CSCurrencyTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2C24BFC02D799AC3006273D2 /* CSCurrency */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C6DF4642D79D67700916BB7 /* Exceptions for "CSCurrency" folder in "CSCurrencyTests" target */,
+			);
 			path = CSCurrency;
 			sourceTree = "<group>";
 		};
