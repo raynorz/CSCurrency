@@ -7,38 +7,6 @@
 
 import SwiftUI
 
-struct CurrencyResponse: Codable {
-    let shortName: String
-    let validFrom: String
-    let name, country: String
-    let move: Double
-    let amount: Int
-    let valBuy, valSell, valMid, currBuy: Double
-    let currSell, currMid: Double
-    let version: Int
-    let cnbMid, ecbMid: Double
-}
-
-enum CurrencyRouter: APIRequestConvertible {
-    case listOfRates
-}
-
-extension CurrencyRouter {
-    var path: String {
-        switch self {
-        case .listOfRates:
-            return "rates/exchangerates"
-        }
-    }
-    
-    var httpMethod: HTTPMethod {
-        switch self {
-        case .listOfRates:
-            return .get
-        }
-    }
-}
-
 struct ContentView: View {
     private let apiManager = BackendCommunication()
     var body: some View {

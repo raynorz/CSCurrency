@@ -1,3 +1,10 @@
+//
+//  CurrencyResponse.swift
+//  CSCurrency
+//
+//  Created by Daniel Brezina on 06.03.2025.
+//
+
 struct CurrencyResponse: Codable {
     let shortName: String
     let validFrom: String

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class BackendCommunication {
+final class BackendCommunication: APIManager {
     private var session: URLSession {
         return URLSession(configuration: .default)
     }
