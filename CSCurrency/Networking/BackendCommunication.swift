@@ -12,12 +12,9 @@ final class BackendCommunication {
         return URLSession(configuration: .default)
     }
     
-    func request<T: Decodable>(endpoint: String) async throws -> T {
+    func request<T: Decodable>(endpoint: APIRequestConvertible) async throws -> T {
         do {
-            var urlRequest = URLRequest(url: URL(string: endpoint)!)
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            urlRequest.setValue("9a25846c-918e-4bae-865c-3c992df79ff7", forHTTPHeaderField: "WEB-API-key")
+            let urlRequest = try endpoint.createUrlRequest()
             let (data, response) = try await session.data(for: urlRequest)
             
             return try handleResponse(data: data, urlData: (urlRequest, response))

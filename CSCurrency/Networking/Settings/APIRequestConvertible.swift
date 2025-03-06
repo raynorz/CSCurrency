@@ -50,5 +50,13 @@ extension APIRequestConvertible {
     var httpBody: Data? {
         return nil
     }
+    
+    func createUrlRequest() throws -> URLRequest {
+        guard let urlRequest = urlRequest else {
+            throw NetworkingError.invalidURLRequest
+        }
+        
+        return urlRequest
+    }
 }
 

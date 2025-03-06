@@ -19,6 +19,26 @@ struct CurrencyResponse: Codable {
     let cnbMid, ecbMid: Double
 }
 
+enum CurrencyRouter: APIRequestConvertible {
+    case listOfRates
+}
+
+extension CurrencyRouter {
+    var path: String {
+        switch self {
+        case .listOfRates:
+            return "rates/exchangerates"
+        }
+    }
+    
+    var httpMethod: HTTPMethod {
+        switch self {
+        case .listOfRates:
+            return .get
+        }
+    }
+}
+
 struct ContentView: View {
     private let apiManager = BackendCommunication()
     var body: some View {
@@ -32,7 +52,7 @@ struct ContentView: View {
         .onAppear {
             Task {
                 do {
-                    let response: [CurrencyResponse] = try await apiManager.request(endpoint: "https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v2/rates/exchangerates")
+                    let response: [CurrencyResponse] = try await apiManager.request(endpoint: CurrencyRouter.listOfRates)
                     print(response)
                 } catch {
                     print("Catching error: \(error)")
