@@ -7,12 +7,6 @@
 
 import XCTest
 
-final class MockAPIManager: APIManager {
-    func request<T>(endpoint: any APIRequestConvertible) async throws -> T where T : Decodable {
-        throw NetworkingError.notFound
-    }
-}
-
 final class CurrencyServiceTests: XCTestCase {
     var currencyService: CurrencyServiceProtocol!
     
@@ -33,6 +27,26 @@ final class CurrencyServiceTests: XCTestCase {
             let response = try await currencyService.getCurrenciesExchange()
             
             XCTAssertNotNil(response)
+            XCTAssertEqual(response.count, 20)
+            
+            let currency = response.first
+            XCTAssertNotNil(currency)
+            
+            XCTAssertEqual(currency!.shortName, "AUD")
+            XCTAssertEqual(currency!.validFrom, "2022-04-26T00:00:00")
+            XCTAssertEqual(currency!.name, "Dollar")
+            XCTAssertEqual(currency!.country, "Australia")
+            XCTAssertEqual(currency!.move, -0.5)
+            XCTAssertEqual(currency!.amount, 1)
+            XCTAssertEqual(currency!.valBuy, 15.74)
+            XCTAssertEqual(currency!.valSell, 16.88)
+            XCTAssertEqual(currency!.valMid, 16.306)
+            XCTAssertEqual(currency!.currBuy, 15.898)
+            XCTAssertEqual(currency!.currSell, 16.714)
+            XCTAssertEqual(currency!.currMid, 16.306)
+            XCTAssertEqual(currency!.version, 1)
+            XCTAssertEqual(currency!.cnbMid, 16.31)
+            XCTAssertEqual(currency!.ecbMid, 1.497)
         } catch {
             XCTFail("Failed with error: \(error)")
         }
