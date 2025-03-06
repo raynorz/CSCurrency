@@ -7,20 +7,6 @@
 
 import Foundation
 
-enum NetworkingError: Error {
-    case invalidURLRequest
-    case invalidResponse
-    case serializationError
-    case notFound
-}
-
-class CustomJSONDecoder: JSONDecoder, @unchecked Sendable {
-    override init() {
-        super.init()
-        keyDecodingStrategy = .convertFromSnakeCase
-    }
-}
-
 final class BackendCommunication {
     private var session: URLSession {
         return URLSession(configuration: .default)
