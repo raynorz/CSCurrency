@@ -16,7 +16,7 @@ struct GetCurrenciesUseCase {
 }
 
 extension GetCurrenciesUseCase {
-    func getCurrencies() async throws -> [CurrencyResponse] {
+    func getCurrencies() async throws -> [CurrencyDataProtocol] {
         return try await service.getCurrenciesExchange()
     }
 }
