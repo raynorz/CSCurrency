@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol GetCurrenciesUseCaseProtocol {
+    func getCurrencies() async throws -> [CurrencyDataProtocol]
+}
+
 struct GetCurrenciesUseCase {
     private let service: CurrencyServiceProtocol
     
