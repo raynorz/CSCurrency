@@ -30,6 +30,7 @@ final class CurrenciesListViewModelTests: XCTestCase {
     
     func testGetCurrencies_Success() async {
         // given
+        mockApiManager.resultType = .success
         
         // when
         await viewModel.getCurrencies()
@@ -37,5 +38,17 @@ final class CurrenciesListViewModelTests: XCTestCase {
         // then
         XCTAssertNil(viewModel.alertType)
         XCTAssertFalse(viewModel.currencies.isEmpty)
+    }
+    
+    func testGetCurrencies_Fail() async {
+        // given
+        mockApiManager.resultType = .error
+        
+        // when
+        await viewModel.getCurrencies()
+        
+        // then
+        XCTAssertNotNil(viewModel.alertType)
+        XCTAssertTrue(viewModel.currencies.isEmpty)
     }
 }
