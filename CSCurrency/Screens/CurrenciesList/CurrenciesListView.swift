@@ -10,7 +10,6 @@ import SwiftUI
 struct CurrenciesListView: View {
     @ObservedObject private var viewModel: CurrenciesListViewModel
     
-    
     init() {
         let currencyService = CurrencyService(apiManager: BackendCommunication())
         let useCase = GetCurrenciesUseCase(service: currencyService)

@@ -12,7 +12,8 @@ final class CurrenciesListViewModel: ObservableObject {
     private let getCurrenciesUseCase: GetCurrenciesUseCaseProtocol
     
     @Published private(set) var currencies: [CurrencyDataProtocol] = []
-    
+    @Published var alertType: ErrorAlertType?
+
     init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol) {
         self.getCurrenciesUseCase = getCurrenciesUseCase
     }
@@ -25,6 +26,7 @@ extension CurrenciesListViewModel {
             currencies = try await getCurrenciesUseCase.getCurrencies()
             print(currencies)
         } catch {
+            alertType = .networkingError
             print("Error: \(error)")
         }
     }
