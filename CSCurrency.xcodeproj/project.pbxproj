@@ -41,6 +41,8 @@
 				Routers/Currency/CurrencyRouter.swift,
 				Services/Currency/CurrencyService.swift,
 				Services/Currency/ResponseBodies/CurrencyResponse.swift,
+				UseCases/Currency/GetCurrenciesUseCase.swift,
+				UseCases/Currency/Model/CurrencyDataProtocol.swift,
 			);
 			target = 2C24BFCD2D799AC4006273D2 /* CSCurrencyTests */;
 		};

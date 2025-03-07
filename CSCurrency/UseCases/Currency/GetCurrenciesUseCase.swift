@@ -11,7 +11,7 @@ protocol GetCurrenciesUseCaseProtocol {
     func getCurrencies() async throws -> [CurrencyDataProtocol]
 }
 
-struct GetCurrenciesUseCase {
+struct GetCurrenciesUseCase: GetCurrenciesUseCaseProtocol {
     private let service: CurrencyServiceProtocol
     
     init(service: CurrencyServiceProtocol) {
