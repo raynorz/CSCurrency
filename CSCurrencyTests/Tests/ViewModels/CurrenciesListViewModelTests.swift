@@ -51,4 +51,24 @@ final class CurrenciesListViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModel.alertType)
         XCTAssertTrue(viewModel.currencies.isEmpty)
     }
+    
+    func testBaseCurrencyAmount_withValidInteger() {
+        viewModel.amountInput = "1"
+        XCTAssertEqual(viewModel.baseCurrencyAmount, 1.0)
+    }
+    
+    func testBaseCurrencyAmount_withValidDecimal() {
+        viewModel.amountInput = "1999,15"
+        XCTAssertEqual(viewModel.baseCurrencyAmount, 1999.15, accuracy: 0.001)
+    }
+    
+    func testBaseCurrencyAmount_withInvalidInput() {
+        viewModel.amountInput = "abc"
+        XCTAssertEqual(viewModel.baseCurrencyAmount, 0.0)
+    }
+    
+    func testBaseCurrencyAmount_withEmptyInput() {
+        viewModel.amountInput = ""
+        XCTAssertEqual(viewModel.baseCurrencyAmount, 0.0)
+    }
 }
