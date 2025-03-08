@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CurrencyRow: View {
     var currency: any CurrencyDataProtocol
+    var basicAmount: Double = 1
     
     var body: some View {
         HStack {
@@ -42,9 +43,13 @@ struct CurrencyRow: View {
     
     private var conversionView: some View {
         HStack {
-            Text("CZK 1")
-                .font(.subheadline)
-                .foregroundColor(.label)
+            HStack {
+                Text("CZK \(domesticCurrencyAmount.currencyValueFormatted)")
+                Image(systemImageName: arrowDirectionImage)
+            }
+            .foregroundStyle(valueColor)
+            .font(.subheadline)
+            .fontWeight(.bold)
             
             Spacer()
             
@@ -53,15 +58,15 @@ struct CurrencyRow: View {
             
             Spacer()
             
-            HStack {
-                Image(systemImageName: arrowDirectionImage)
-                Text("\(currency.shortName) \(currency.valueFormatted)")
-            }
-            .foregroundStyle(valueColor)
-            .font(.subheadline)
-            .fontWeight(.bold)
+            Text("\(currency.shortName) \(basicAmount.currencyValueFormatted)")
+                .foregroundStyle(Color.label)
+                .font(.subheadline)
         }
         .font(.subheadline)
+    }
+    
+    private var domesticCurrencyAmount: Double {
+        currency.valMid * basicAmount
     }
     
     private var arrowDirectionImage: SystemImage {

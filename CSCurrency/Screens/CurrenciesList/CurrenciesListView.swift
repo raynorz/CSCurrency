@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CurrenciesListView: View {
     @ObservedObject private var viewModel: CurrenciesListViewModel
+    @FocusState private var isInputFocused: Bool
     
     init() {
         let currencyService = CurrencyService(apiManager: MockAPIManager()) // TODO: change to backendCommunication
@@ -18,19 +19,53 @@ struct CurrenciesListView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.currencies, id: \.id) { currency in
-                CurrencyRow(currency: currency)
-            }
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.primary.opacity(0))
+            textfield
+            listContent
         }
         .scrollContentBackground(.hidden)
-        .background(Color.primary)
+        .background(Color.systemBackground)
         .onAppear {
             Task {
                 await viewModel.getCurrencies()
             }
         }
+    }
+    
+    private var textfield: some View {
+        HStack(spacing: 8) {
+            CurrencyCircle(shortName: "CZK")
+            
+            Spacer()
+            
+            TextField("Amount", text: $viewModel.amountInput)
+                .focused($isInputFocused)
+                .keyboardType(.decimalPad)
+            
+            Button {
+                isInputFocused = false
+            } label: {
+                Image(systemImageName: .arrowRightCircleFill)
+                    .font(.title2)
+                    .foregroundColor(.systemTeal)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.systemBackground)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.systemGray, lineWidth: 1)
+        )
+    }
+    
+    private var listContent: some View {
+        ForEach(viewModel.currencies, id: \.id) { currency in
+            CurrencyRow(currency: currency, basicAmount: viewModel.baseCurrencyAmount)
+        }
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.systemBackground.opacity(0))
     }
 }
 

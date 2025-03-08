@@ -10,4 +10,5 @@ enum SystemImage: String {
     case arrowUpRightCircle = "arrow.up.right.circle"
     case arrowRightCircle = "arrow.right.circle"
     case arrowDownRightCircle = "arrow.down.right.circle"
+    case arrowRightCircleFill = "arrow.right.circle.fill"
 }

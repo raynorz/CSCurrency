@@ -12,16 +12,11 @@ protocol CurrencyDataProtocol: Identifiable {
     var country: String { get }
     var amount: Int { get }
     var valMid: Double { get }
-    var valueFormatted: String { get }
     var move: Double { get }
 }
 
 extension CurrencyResponse: CurrencyDataProtocol {
     var id: String {
         country
-    }
-    
-    var valueFormatted: String {
-        String(format: "%.3f", valMid)
     }
 }
