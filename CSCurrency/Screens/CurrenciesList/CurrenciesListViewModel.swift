@@ -11,7 +11,7 @@ import Foundation
 final class CurrenciesListViewModel: ObservableObject {
     private let getCurrenciesUseCase: GetCurrenciesUseCaseProtocol
     
-    @Published private(set) var currencies: [CurrencyDataProtocol] = []
+    @Published private(set) var currencies: [any CurrencyDataProtocol] = []
     @Published var alertType: ErrorAlertType?
 
     init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol) {

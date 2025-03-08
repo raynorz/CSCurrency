@@ -48,6 +48,16 @@
 			);
 			target = 2C24BFCD2D799AC4006273D2 /* CSCurrencyTests */;
 		};
+		2C7D60D12D7C338D0076AAB1 /* Exceptions for "CSCurrencyTests" folder in "CSCurrency" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Data/Currencies/GET-rates-exchangerates.json",
+				"Settings/APIRequestConvertible+Ext.swift",
+				Settings/JSONLoader.swift,
+				Settings/MockAPIManager.swift,
+			);
+			target = 2C24BFBD2D799AC3006273D2 /* CSCurrency */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -61,6 +71,9 @@
 		};
 		2C24BFD12D799AC4006273D2 /* CSCurrencyTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C7D60D12D7C338D0076AAB1 /* Exceptions for "CSCurrencyTests" folder in "CSCurrency" target */,
+			);
 			path = CSCurrencyTests;
 			sourceTree = "<group>";
 		};

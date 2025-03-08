@@ -11,19 +11,17 @@ struct CurrenciesListView: View {
     @ObservedObject private var viewModel: CurrenciesListViewModel
     
     init() {
-        let currencyService = CurrencyService(apiManager: BackendCommunication())
+        let currencyService = CurrencyService(apiManager: MockAPIManager()) // TODO: change to backendCommunication
         let useCase = GetCurrenciesUseCase(service: currencyService)
         self.viewModel = CurrenciesListViewModel(getCurrenciesUseCase: useCase)
     }
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            ForEach(viewModel.currencies, id: \.id) { currency in
+                Text(currency.name)
+            }
         }
-        .padding()
         .onAppear {
             Task {
                 await viewModel.getCurrencies()
