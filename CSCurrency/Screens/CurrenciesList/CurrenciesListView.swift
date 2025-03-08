@@ -19,7 +19,26 @@ struct CurrenciesListView: View {
     var body: some View {
         List {
             ForEach(viewModel.currencies, id: \.id) { currency in
-                Text(currency.name)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(currency.shortName)
+                            .font(.headline)
+                        Text(currency.name)
+                            .font(.subheadline)
+                        Text(currency.country)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+
+                    VStack(alignment: .trailing) {
+                        Text(String(format: "%.3f", currency.valMid))
+                            .font(.headline)
+                        Text("\(String(format: "%.2f", currency.move))")
+                            .font(.caption)
+                            .foregroundColor(currency.move < 0 ? .red : .green)
+                    }
+                }
             }
         }
         .onAppear {
