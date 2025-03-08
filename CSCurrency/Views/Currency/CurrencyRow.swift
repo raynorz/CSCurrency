@@ -25,8 +25,11 @@ struct CurrencyRow: View {
                 .fill(.ultraThinMaterial)
         )
     }
-    
-    private var headerView: some View {
+}
+
+// MARK: - Private subviews
+private extension CurrencyRow {
+    var headerView: some View {
         HStack {
             HStack(spacing: -10) {
                 CurrencyCircle(shortName: "CZK")
@@ -41,7 +44,7 @@ struct CurrencyRow: View {
         }
     }
     
-    private var conversionView: some View {
+    var conversionView: some View {
         HStack {
             HStack {
                 Text("CZK \(domesticCurrencyAmount.currencyValueFormatted)")
@@ -64,12 +67,15 @@ struct CurrencyRow: View {
         }
         .font(.subheadline)
     }
-    
-    private var domesticCurrencyAmount: Double {
+}
+
+// MARK: - Private properties
+private extension CurrencyRow {
+    var domesticCurrencyAmount: Double {
         currency.valMid * basicAmount
     }
     
-    private var arrowDirectionImage: SystemImage {
+    var arrowDirectionImage: SystemImage {
         switch currency.move {
         case let x where x < 0:
             return .arrowDownRightCircle
@@ -80,7 +86,7 @@ struct CurrencyRow: View {
         }
     }
     
-    private var valueColor: Color {
+    var valueColor: Color {
         switch currency.move {
         case let x where x < 0:
             return .systemRed

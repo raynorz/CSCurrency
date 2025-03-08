@@ -12,7 +12,7 @@ struct CurrenciesListView: View {
     @FocusState private var isInputFocused: Bool
     
     init() {
-        let currencyService = CurrencyService(apiManager: MockAPIManager()) // TODO: change to backendCommunication
+        let currencyService = CurrencyService(apiManager: BackendCommunication())
         let useCase = GetCurrenciesUseCase(service: currencyService)
         self.viewModel = CurrenciesListViewModel(getCurrenciesUseCase: useCase)
     }
@@ -30,7 +30,10 @@ struct CurrenciesListView: View {
             }
         }
     }
-    
+}
+
+// MARK: - Private subviews
+private extension CurrenciesListView {
     private var textfield: some View {
         HStack(spacing: 8) {
             CurrencyCircle(shortName: "CZK")
