@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GetCurrenciesUseCaseProtocol {
-    func getCurrencies() async throws -> [CurrencyDataProtocol]
+    func getCurrencies() async throws -> [any CurrencyDataProtocol]
 }
 
 struct GetCurrenciesUseCase: GetCurrenciesUseCaseProtocol {
@@ -20,7 +20,9 @@ struct GetCurrenciesUseCase: GetCurrenciesUseCaseProtocol {
 }
 
 extension GetCurrenciesUseCase {
-    func getCurrencies() async throws -> [CurrencyDataProtocol] {
-        return try await service.getCurrenciesExchange()
+    func getCurrencies() async throws -> [any CurrencyDataProtocol] {
+        let allCurrencies = try await service.getCurrenciesExchange()
+        
+        return allCurrencies.filter { $0.valMid > 0}
     }
 }
