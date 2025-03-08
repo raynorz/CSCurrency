@@ -21,6 +21,8 @@ struct GetCurrenciesUseCase: GetCurrenciesUseCaseProtocol {
 
 extension GetCurrenciesUseCase {
     func getCurrencies() async throws -> [any CurrencyDataProtocol] {
-        return try await service.getCurrenciesExchange()
+        let allCurrencies = try await service.getCurrenciesExchange()
+        
+        return allCurrencies.filter { $0.valMid > 0}
     }
 }

@@ -35,4 +35,14 @@ final class JSONLoader {
             throw error
         }
     }
+    
+    func getExample<T: Decodable>(request: APIRequestConvertible) -> T? {
+        do {
+            let data: T = try loadJSON(fileName: request.fileName)
+            return data
+        } catch {
+            print("❌ Can't get the file \(request.fileName) \(error)")
+            return nil
+        }
+    }
 }
