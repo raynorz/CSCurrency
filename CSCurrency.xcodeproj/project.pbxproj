@@ -29,20 +29,54 @@
 		2C24BFD82D799AC4006273D2 /* CSCurrencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSCurrencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2C6DF4642D79D67700916BB7 /* Exceptions for "CSCurrency" folder in "CSCurrencyTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Helpers/Double+Ext.swift",
+				"Helpers/String+Ext.swift",
+				Model/ErrorAlert/ErrorAlertType.swift,
+				Networking/Settings/APIManager.swift,
+				Networking/Settings/APIRequestConvertible.swift,
+				Networking/Settings/CustomJSONDecoder.swift,
+				Networking/Settings/HTTPMethod.swift,
+				Networking/Settings/NetworkingError.swift,
+				Routers/Currency/CurrencyRouter.swift,
+				Screens/CurrenciesList/CurrenciesListViewModel.swift,
+				Services/Currency/CurrencyService.swift,
+				Services/Currency/ResponseBodies/CurrencyResponse.swift,
+				UseCases/Currency/GetCurrenciesUseCase.swift,
+				UseCases/Currency/Model/CurrencyDataProtocol.swift,
+			);
+			target = 2C24BFCD2D799AC4006273D2 /* CSCurrencyTests */;
+		};
+		2C7D60D12D7C338D0076AAB1 /* Exceptions for "CSCurrencyTests" folder in "CSCurrency" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Data/Currencies/GET-rates-exchangerates.json",
+				"Settings/APIRequestConvertible+Ext.swift",
+				Settings/JSONLoader.swift,
+				Settings/MockAPIManager.swift,
+			);
+			target = 2C24BFBD2D799AC3006273D2 /* CSCurrency */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2C24BFC02D799AC3006273D2 /* CSCurrency */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C6DF4642D79D67700916BB7 /* Exceptions for "CSCurrency" folder in "CSCurrencyTests" target */,
+			);
 			path = CSCurrency;
 			sourceTree = "<group>";
 		};
 		2C24BFD12D799AC4006273D2 /* CSCurrencyTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C7D60D12D7C338D0076AAB1 /* Exceptions for "CSCurrencyTests" folder in "CSCurrency" target */,
+			);
 			path = CSCurrencyTests;
-			sourceTree = "<group>";
-		};
-		2C24BFDB2D799AC4006273D2 /* CSCurrencyUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CSCurrencyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -77,7 +111,6 @@
 			children = (
 				2C24BFC02D799AC3006273D2 /* CSCurrency */,
 				2C24BFD12D799AC4006273D2 /* CSCurrencyTests */,
-				2C24BFDB2D799AC4006273D2 /* CSCurrencyUITests */,
 				2C24BFBF2D799AC3006273D2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,9 +185,6 @@
 			);
 			dependencies = (
 				2C24BFDA2D799AC4006273D2 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				2C24BFDB2D799AC4006273D2 /* CSCurrencyUITests */,
 			);
 			name = CSCurrencyUITests;
 			packageProductDependencies = (
