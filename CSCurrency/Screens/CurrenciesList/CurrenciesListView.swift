@@ -24,6 +24,9 @@ struct CurrenciesListView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.systemBackground)
+        .alert(item: $viewModel.alertType) { item in
+            Alert(title: Text(item.title), message: Text(item.description))
+        }
         .onAppear {
             Task {
                 await viewModel.getCurrencies()
