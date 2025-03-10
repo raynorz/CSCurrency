@@ -36,6 +36,7 @@
 				"Helpers/Double+Ext.swift",
 				"Helpers/String+Ext.swift",
 				Model/ErrorAlert/ErrorAlertType.swift,
+				Model/Loading/LoadingState.swift,
 				Networking/Settings/APIManager.swift,
 				Networking/Settings/APIRequestConvertible.swift,
 				Networking/Settings/CustomJSONDecoder.swift,
