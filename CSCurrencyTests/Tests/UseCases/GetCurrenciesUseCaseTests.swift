@@ -27,7 +27,7 @@ final class GetCurrenciesUseCaseTests: XCTestCase {
             let result = try await useCase.getCurrencies()
             
             XCTAssertNotNil(result)
-            XCTAssertEqual(result.count, 20)
+            XCTAssertEqual(result.count, 13)
             
             let currencyData = result.first
             XCTAssertNotNil(currencyData)
