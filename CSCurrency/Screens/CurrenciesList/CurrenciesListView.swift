@@ -18,6 +18,29 @@ struct CurrenciesListView: View {
     }
     
     var body: some View {
+        stateView()
+            .onAppear {
+                Task {
+                    await viewModel.getCurrencies()
+                }
+            }
+    }
+}
+
+// MARK: - Private subviews
+private extension CurrenciesListView {
+    @ViewBuilder
+    private func stateView() -> some View {
+        switch viewModel.loadingState {
+        case .initial, .isLoading:
+            ProgressView("Loading")
+                .progressViewStyle(.circular)
+        case .loadingFinished:
+            contentList
+        }
+    }
+    
+    private var contentList: some View {
         List {
             textfield
             listContent
@@ -27,16 +50,8 @@ struct CurrenciesListView: View {
         .alert(item: $viewModel.alertType) { item in
             Alert(title: Text(item.title), message: Text(item.description))
         }
-        .onAppear {
-            Task {
-                await viewModel.getCurrencies()
-            }
-        }
     }
-}
-
-// MARK: - Private subviews
-private extension CurrenciesListView {
+    
     private var textfield: some View {
         HStack(spacing: 8) {
             CurrencyCircle(shortName: "CZK")
