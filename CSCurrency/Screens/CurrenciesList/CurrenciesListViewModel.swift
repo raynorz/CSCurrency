@@ -12,6 +12,7 @@ final class CurrenciesListViewModel: ObservableObject {
     private let getCurrenciesUseCase: GetCurrenciesUseCaseProtocol
     
     @Published private(set) var currencies: [any CurrencyDataProtocol] = []
+    @Published private(set)var loadingState = LoadingState.initial
     @Published var alertType: ErrorAlertType?
     @Published var amountInput: String = "1"
 
@@ -30,12 +31,14 @@ extension CurrenciesListViewModel {
 // MARK: - Public methods
 extension CurrenciesListViewModel {
     func getCurrencies() async {
+        loadingState = .isLoading
+        defer {
+            loadingState = .loadingFinished
+        }
         do {
             currencies = try await getCurrenciesUseCase.getCurrencies()
-            print(currencies)
         } catch {
             alertType = .networkingError
-            print("Error: \(error)")
         }
     }
 }
